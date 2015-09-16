@@ -28,7 +28,7 @@ check_chefdk() {
   else
     step "Downloading and installing ChefDK $CHEFDK_VERSION"
     mkdir -p $TARGET_DIR
-    wget -nc -O $TARGET_DIR/chefdk_$CHEFDK_VERSION-1_amd64.deb \
+    wget --quiet -nc -O $TARGET_DIR/chefdk_$CHEFDK_VERSION-1_amd64.deb \
       https://opscode-omnibus-packages.s3.amazonaws.com/ubuntu/12.04/x86_64/chefdk_$CHEFDK_VERSION-1_amd64.deb
     sudo dpkg -i $TARGET_DIR/chefdk_$CHEFDK_VERSION-1_amd64.deb
   fi
@@ -93,5 +93,5 @@ else
   symlink_self
   [[ "$1" == "--pull" ]] && update_repo
   update_vm
-  verify_vm
+  #verify_vm
 fi
