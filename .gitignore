@@ -1,0 +1,4 @@
+cookbooks/vm/cookbooks
+cookbooks/vm/nodes
+.vagrant
+Berksfile.lock
