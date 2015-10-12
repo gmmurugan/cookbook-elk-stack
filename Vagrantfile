@@ -11,7 +11,7 @@ Vagrant.configure(2) do |config|
   end
   
   config.vm.define "elastic-test" do |cfg| 
-    config.vm.box = "boxcutter/ubuntu1410"
+    config.vm.box = "boxcutter/ubuntu1404"
     cfg.vm.hostname="elastic-test"
     cfg.vm.box_check_update = true
     # Port forward SSH
