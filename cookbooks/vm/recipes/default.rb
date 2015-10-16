@@ -16,3 +16,7 @@ include_recipe "java"
 
 node.set['elasticsearch']['install_type'] = "package"
 include_recipe 'elasticsearch'
+
+node.set['kibana']['version'] = "3"
+include_recipe 'kibana'
+
