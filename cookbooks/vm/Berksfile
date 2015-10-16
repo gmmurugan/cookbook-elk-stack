@@ -1,2 +1,4 @@
 source "https://supermarket.chef.io"
 metadata
+
+cookbook 'elasticsearch', '~> 1.0.3'
