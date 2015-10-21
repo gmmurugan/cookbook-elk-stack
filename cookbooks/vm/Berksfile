@@ -4,4 +4,4 @@ metadata
 cookbook 'java', '~> 1.35.0'
 cookbook 'elasticsearch', '~> 1.0.3'
 cookbook 'kibana', '~> 0.1.8'
-
+cookbook 'elasticsearch-head', '~> 0.0.1'
