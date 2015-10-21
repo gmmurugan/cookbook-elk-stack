@@ -19,5 +19,6 @@ include_recipe 'elasticsearch'
 
 node.set['kibana']['version'] = "3"
 include_recipe 'kibana'
+include_recipe 'kibana::apache'
 
 include_recipe 'elasticsearch-head'
