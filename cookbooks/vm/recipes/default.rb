@@ -21,4 +21,5 @@ node.set['kibana']['version'] = "3"
 include_recipe 'kibana'
 include_recipe 'kibana::apache'
 
+node.set['elastichead']['install_path'] = '/usr/local/elasticsearch/plugins/head/'
 include_recipe 'elasticsearch-head'
