@@ -17,6 +17,9 @@ include_recipe "java"
 node.set['elasticsearch']['install_type'] = "package"
 include_recipe 'elasticsearch'
 elasticsearch_plugin 'mobz/elasticsearch-head'
+service 'elasticsearch' do
+    action :start
+end
 
 node.set['kibana']['install_java'] = 'false'
 node.set['kibana']['version'] = '4.1.2-linux-x64' 
