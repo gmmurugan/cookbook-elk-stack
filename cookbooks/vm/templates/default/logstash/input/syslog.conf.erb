@@ -1,0 +1,10 @@
+input {
+  file {
+    type => 'syslog'
+    path => '/var/log/syslog'
+  }
+  file {
+    type => 'syslog'
+    path => '/var/log/auth.log'
+  }
+}

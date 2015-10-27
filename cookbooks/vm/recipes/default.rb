@@ -23,3 +23,15 @@ node.set['kibana']['version'] = '4.1.2-linux-x64'
 node.set['kibana']['file']['url'] = 'https://download.elastic.co/kibana/kibana/kibana-4.1.2-linux-x64.tar.gz'
 node.set['kibana']['webserver'] = 'nginx'
 include_recipe 'kibana_lwrp::install'
+
+include_recipe 'simple-logstash::default'
+logstash_service 'logstash'
+
+# example config requires special permissions to read logfile
+group 'adm' do
+	action :modify
+  members 'logstash'
+  append true
+end
+logstash_input 'syslog'
+logstash_output 'logstash'
