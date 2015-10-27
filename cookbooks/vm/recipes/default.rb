@@ -17,9 +17,11 @@ include_recipe "java"
 node.set['elasticsearch']['install_type'] = "package"
 include_recipe 'elasticsearch'
 
-node.set['kibana']['version'] = "3"
-include_recipe 'kibana'
-include_recipe 'kibana::apache'
+node.set['kibana']['install_java'] = 'false'
+node.set['kibana']['version'] = '4.1.2-linux-x64' 
+node.set['kibana']['file']['url'] = 'https://download.elastic.co/kibana/kibana/kibana-4.1.2-linux-x64.tar.gz'
+node.set['kibana']['webserver'] = 'nginx'
+include_recipe 'kibana_lwrp::install'
 
 node.set['elastichead']['install_path'] = '/usr/local/elasticsearch/plugins/head/'
 include_recipe 'elasticsearch-head'
