@@ -16,6 +16,15 @@ Vagrant.configure(2) do |config|
     cfg.vm.box_check_update = true
     # Port forward SSH
     cfg.vm.network :forwarded_port, guest: 22, host: 2223, id: "ssh", auto_correct:true
+
+    cfg.vm.provider :virtualbox do |vbox, override|
+      vbox.customize ["modifyvm", :id,
+                      "--name", "elastic-test",
+                      "--memory", 4096,
+                      "--cpus", 2
+      ]
+    end
+
     cfg.vm.provider :vmware_workstation do |v, override|
       v.gui = true
       v.vmx["memsize"] = "4096"
@@ -26,6 +35,7 @@ Vagrant.configure(2) do |config|
       v.vmx["RemoteDisplay.vnc.port"] = "5900"
       v.vmx["scsi0.virtualDev"] = "lsilogic"
     end
+
     cfg.vm.provision "shell", privileged: false, inline: "/vagrant/scripts/update-vm.sh"
   end
  

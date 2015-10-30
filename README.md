@@ -9,6 +9,6 @@ The data feed can come from a logstash instance or by implementing data push plu
 
 ## Developing the solution
 
-You need vagrant, VMWare Workstation and the vagrant VMWare plugin.
+You need vagrant, VMWare Workstation and the vagrant VMWare plugin or VirtualBox.
 
 Using [linux-developer-vm](https://github.com/Zuehlke/linux-developer-vm) as the basis with the [elasticsearch](https://github.com/elastic/cookbook-elasticsearch) cookbook.
