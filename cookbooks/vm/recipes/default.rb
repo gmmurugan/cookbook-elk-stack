@@ -2,7 +2,7 @@
 # Cookbook Name:: elastic-test
 # Recipe:: default
 #
-# Author: var
+# Author: zena
 #
 # Copyright (c) 2015 Zühlke, All Rights Reserved.
 
