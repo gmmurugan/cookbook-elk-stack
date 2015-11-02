@@ -16,7 +16,7 @@ Vagrant.configure(2) do |config|
     cfg.vm.box_check_update = true
     # Port forward SSH
     cfg.vm.network :forwarded_port, guest: 22, host: 2223, id: "ssh", auto_correct:true
-<<<<<<< HEAD
+    cfg.vm.network :forwarded_port, guest: 9200, host: 9200, id: "elastic", auto_correct:true
 
     cfg.vm.provider :virtualbox do |vbox, override|
       vbox.customize ["modifyvm", :id,
@@ -26,9 +26,6 @@ Vagrant.configure(2) do |config|
       ]
     end
 
-=======
-    cfg.vm.network :forwarded_port, guest: 9200, host: 9200, id: "elastic", auto_correct:true
->>>>>>> 46a690b8a753233736966f814895ae95cb5dffd4
     cfg.vm.provider :vmware_workstation do |v, override|
       v.gui = true
       v.vmx["memsize"] = "4096"
