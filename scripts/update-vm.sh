@@ -3,7 +3,7 @@
 CHEFDK_VERSION="0.7.0"
 TARGET_DIR="/tmp/vagrant-cache/wget"
 SCRIPT_FILE="$(readlink -f ${BASH_SOURCE[0]})"
-REPO_ROOT="$(dirname $SCRIPT_FILE)/.."
+REPO_ROOT="/vagrant"
 
 big_step() {
   echo ""

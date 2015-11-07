@@ -38,8 +38,7 @@ Vagrant.configure(2) do |config|
       v.vmx["scsi0.virtualDev"] = "lsilogic"
     end
 
-    config.vm.synced_folder ".", "/vagrant", id: "vagrant-root",owner: "vagrant",group: "vagrant",
-              mount_options: ["dmode=775,fmode=664"]
+    config.vm.synced_folder ".", "/vagrant", id: "vagrant-root",owner: "vagrant",group: "vagrant",mount_options: ["dmode=775,fmode=664"]
 
     cfg.vm.provision "shell", privileged: false, path: "scripts/update-vm.sh"
   end
