@@ -38,7 +38,10 @@ Vagrant.configure(2) do |config|
       v.vmx["scsi0.virtualDev"] = "lsilogic"
     end
 
-    cfg.vm.provision "shell", privileged: false, inline: "/vagrant/scripts/update-vm.sh"
+    config.vm.synced_folder ".", "/vagrant", id: "vagrant-root",owner: "vagrant",group: "vagrant",
+              mount_options: ["dmode=775,fmode=664"]
+
+    cfg.vm.provision "shell", privileged: false, path: "scripts/update-vm.sh"
   end
  
   # Share an additional folder to the guest VM. The first argument is
