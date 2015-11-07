@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 CHEFDK_VERSION="0.7.0"
 TARGET_DIR="/tmp/vagrant-cache/wget"
