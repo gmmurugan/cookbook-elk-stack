@@ -6,7 +6,6 @@ The solution at the moment is elasticsearch with kibana running on a single Ubun
 
 The data feed can come from a logstash instance or by implementing data push plugins in our CI infrastructure.
 
-
 ## Developing the solution
 
 You need vagrant, VMWare Workstation and the vagrant VMWare plugin or VirtualBox.
@@ -19,12 +18,16 @@ Testing is done via serverspec.
 
 ## Access
 
-Elasticsearch is accessible via portforwarding through http://127.0.0.1:9200/ . Also the elasticsearch-head plugin
-is installed, which you can find under http://127.0.0.1:9200/_plugin/head . 
+Elasticsearch is accessible via port forwarding through http://127.0.0.1:9200/ . 
+
+Also the elasticsearch-head plugin is installed, which you can find under http://127.0.0.1:9200/_plugin/head . 
+
 Kibana can be reached under http://127.0.0.1:8080 .
 
 ## Elasticsearch data
 
-This vm comes preconfigured with a logstash config for feeding
-elasticsearch with the logfiles of this vm. Adjust these accordingly.
+This vm comes preconfigured with a logstash config for feeding elasticsearch with the logfiles of this vm. 
+
+Adjust these accordingly.
+
 Have a look at cookbooks/vm/templates/default/logstash/ .
