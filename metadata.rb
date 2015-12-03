@@ -1,4 +1,4 @@
-name             'vm'
+name             'elk-stack'
 maintainer       'var@zuehlke.com'
 maintainer_email 'var@zuehlke.com'
 license          'MIT '
