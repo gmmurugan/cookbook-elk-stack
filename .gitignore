@@ -1,3 +1,3 @@
-cookbooks/vm/cookbooks
-cookbooks/vm/nodes
 .vagrant
+.bundle
+Gemfile.lock
