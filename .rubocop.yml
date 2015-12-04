@@ -11,3 +11,4 @@ AllCops:
   Exclude:
     - Rakefile
     - Vagrantfile
+    - vendor/bundle/**/*
