@@ -6,6 +6,10 @@ DEPENDENCIES
     git: https://github.com/tknerr/java.git
     revision: b38d2381b1e4e40b4674be47c105e88f38f47fbd
     ref: extract
+  runit
+    git: https://github.com/tknerr/runit.git
+    revision: 04f2d5ba8169f4cc7743bb2d4f314f7ea4401f25
+    ref: temp-fi
 
 GRAPH
   7-zip (1.0.2)
@@ -64,7 +68,7 @@ GRAPH
   packagecloud (0.1.1)
   poise (2.4.0)
   rsyslog (2.2.0)
-  runit (1.7.4)
+  runit (1.7.5)
     packagecloud (>= 0.0.0)
   simple-logstash (0.2.4)
     ark (>= 0.0.0)
