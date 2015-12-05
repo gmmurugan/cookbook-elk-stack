@@ -7,9 +7,9 @@ DEPENDENCIES
     revision: b38d2381b1e4e40b4674be47c105e88f38f47fbd
     ref: extract
   runit
-    git: https://github.com/tknerr/runit.git
-    revision: 04f2d5ba8169f4cc7743bb2d4f314f7ea4401f25
-    ref: temp-fi
+    git: https://github.com/ai-traders/runit
+    revision: a650ecbe270dbc4e6c3fb4c6b755cb3d4f0d4e6c
+    ref: #60_in_
 
 GRAPH
   7-zip (1.0.2)
@@ -68,7 +68,7 @@ GRAPH
   packagecloud (0.1.1)
   poise (2.4.0)
   rsyslog (2.2.0)
-  runit (1.7.5)
+  runit (1.7.3)
     packagecloud (>= 0.0.0)
   simple-logstash (0.2.4)
     ark (>= 0.0.0)
