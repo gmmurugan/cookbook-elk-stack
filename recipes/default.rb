@@ -38,15 +38,3 @@ group 'adm' do
 end
 logstash_input 'syslog'
 logstash_output 'logstash'
-
-# configure syslog to open remote port 10514
-template '/etc/rsyslog.d/60-tcp-server.conf' do
-  source '60-tcp-server.conf'
-  owner 'root'
-  group 'root'
-  mode '0644'
-  notifies :restart, 'service[rsyslog]', :immediately
-end
-service 'rsyslog' do
-  action :nothing
-end

@@ -1,4 +1,5 @@
 input {
+  # watch local syslogs
   file {
     type => 'syslog'
     path => '/var/log/syslog'
@@ -7,8 +8,9 @@ input {
     type => 'syslog'
     path => '/var/log/auth.log'
   }
-  file {
+  # listen for remote syslogs on both UDP and TCP
+  syslog {
     type => 'syslog'
-    path => '/var/log/remote_*'
+    port => '10514'
   }
 }
