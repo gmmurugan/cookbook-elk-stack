@@ -79,4 +79,9 @@ describe 'logstash' do
   describe service('logstash') do
     it { should be_running }
   end
+
+  describe port(10514) do
+    it { should be_listening.with('tcp') }
+    it { should be_listening.with('udp') }
+  end
 end
