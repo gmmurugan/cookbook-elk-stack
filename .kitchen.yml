@@ -1,0 +1,31 @@
+<%
+def box_for_provider(distro)
+  case ENV.fetch('VAGRANT_DEFAULT_PROVIDER', 'virtualbox')
+    when 'virtualbox', 'vmware_desktop' then "bento/#{distro}"
+    when 'docker' then "tknerr/baseimage-#{distro}"
+    else raise 'unsupported provider!'
+  end
+end
+%>
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+  require_chef_omnibus: 12.4.1
+  client_rb:
+    add_formatter: doc
+
+platforms:
+- name: ubuntu-14.04
+  driver_config:
+    box: <%= box_for_provider('ubuntu-14.04') %>
+    network:
+      - ["forwarded_port", {guest: 9200, host: 19200}]
+      - ["forwarded_port", {guest: 80, host: 18080}]
+
+suites:
+  - name: default
+    run_list:
+      - recipe[elk-stack::default]

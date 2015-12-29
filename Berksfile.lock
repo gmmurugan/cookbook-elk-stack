@@ -1,7 +1,15 @@
 DEPENDENCIES
-  vm
+  elk-stack
     path: .
     metadata: true
+  java
+    git: https://github.com/tknerr/java.git
+    revision: b38d2381b1e4e40b4674be47c105e88f38f47fbd
+    ref: extract
+  runit
+    git: https://github.com/ai-traders/runit
+    revision: a650ecbe270dbc4e6c3fb4c6b755cb3d4f0d4e6c
+    ref: #60_in_
 
 GRAPH
   7-zip (1.0.2)
@@ -11,8 +19,8 @@ GRAPH
   ark (0.9.0)
     7-zip (>= 0.0.0)
     windows (>= 0.0.0)
-  bluepill (2.4.0)
-    rsyslog (>= 0.0.0)
+  bluepill (2.4.1)
+    rsyslog (~> 2.0)
   build-essential (2.2.4)
   chef-sugar (3.1.1)
   chef_handler (1.2.0)
@@ -24,12 +32,19 @@ GRAPH
     chef-sugar (>= 0.0.0)
     curl (>= 0.0.0)
     yum (>= 0.0.0)
+  elk-stack (0.1.0)
+    apt (= 2.9.2)
+    elasticsearch (= 1.0.3)
+    java (= 1.37.0)
+    kibana_lwrp (= 2.0.6)
+    simple-logstash (= 0.2.4)
   git (4.3.4)
     build-essential (>= 0.0.0)
     dmg (>= 0.0.0)
     windows (>= 0.0.0)
     yum-epel (>= 0.0.0)
-  java (1.35.0)
+  java (1.37.0)
+    apt (>= 0.0.0)
   kibana_lwrp (2.0.6)
     apache2 (>= 0.0.0)
     ark (>= 0.0.0)
@@ -49,22 +64,17 @@ GRAPH
     ohai (~> 2.0)
     runit (~> 1.2)
     yum-epel (~> 0.3)
-  ohai (2.0.3)
-  packagecloud (0.1.0)
+  ohai (2.0.4)
+  packagecloud (0.1.1)
   poise (2.4.0)
   rsyslog (2.2.0)
-  runit (1.7.4)
+  runit (1.7.3)
     packagecloud (>= 0.0.0)
   simple-logstash (0.2.4)
     ark (>= 0.0.0)
     runit (>= 1.7.2)
-  vm (0.1.0)
-    elasticsearch (~> 1.0.3)
-    java (~> 1.35.0)
-    kibana_lwrp (~> 2.0.6)
-    simple-logstash (~> 0.2.4)
-  windows (1.38.2)
+  windows (1.38.4)
     chef_handler (>= 0.0.0)
   yum (3.8.2)
-  yum-epel (0.6.4)
+  yum-epel (0.6.5)
     yum (~> 3.2)

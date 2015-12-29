@@ -5,7 +5,7 @@ set :backend, :exec
 
 describe 'java' do
   describe command('java -version') do
-      its(:stderr) { should contain /java version/ }
+    its(:stderr) { should contain 'java version' }
   end
 end
 

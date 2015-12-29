@@ -1,0 +1,14 @@
+Metrics/LineLength:
+  Max: 120
+
+Style/EmptyLinesAroundBlockBody:
+  Enabled: false
+
+Style/SingleSpaceBeforeFirstArg:
+  Enabled: false
+
+AllCops:
+  Exclude:
+    - Rakefile
+    - Vagrantfile
+    - vendor/bundle/**/*

@@ -1,18 +1,26 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 Vagrant.configure(2) do |config|
-  if Vagrant.has_plugin?("berkshelf")
-    config.berkshelf.enabled=false
+
+  # Ensure we have the required plugins installed
+  required_plugins = ["vagrant-berkshelf", "vagrant-omnibus"]
+  required_plugins.each do |plugin|
+    unless Vagrant.has_plugin? plugin
+      raise "the required plugin '#{plugin}' is not installed!"
+    end
   end
-  
-  config.vm.define "elastic-test" do |cfg| 
-    config.vm.box = "boxcutter/ubuntu1404"
+
+  #
+  # Set up an example ELK Stack VM
+  #
+  config.vm.define "elastic-test" do |cfg|
+
+    cfg.vm.box = "bento/ubuntu-14.04"
     cfg.vm.hostname="elastic-test"
-    cfg.vm.box_check_update = true
-    # Port forward SSH
-    cfg.vm.network "forwarded_port", guest: 22, host: 2223, id: "ssh", auto_correct:true
-    cfg.vm.network "forwarded_port", guest: 9200, host: 9200, id: "elastic", auto_correct:true
-    cfg.vm.network "forwarded_port", guest: 80, host: 8080, id: "elastic", auto_correct:true
+
+    # Port forward additional ports
+    cfg.vm.network "forwarded_port", guest: 9200, host: 9200, id: "elastic", auto_correct: true
+    cfg.vm.network "forwarded_port", guest: 80, host: 8080, id: "kibana", auto_correct: true
 
     cfg.vm.provider :virtualbox do |vbox, override|
       vbox.customize ["modifyvm", :id,
@@ -33,8 +41,11 @@ Vagrant.configure(2) do |config|
       v.vmx["scsi0.virtualDev"] = "lsilogic"
     end
 
-    config.vm.synced_folder ".", "/vagrant", id: "vagrant-root",owner: "vagrant",group: "vagrant",mount_options: ["dmode=775,fmode=664"]
+    cfg.omnibus.chef_version = "12.4.1"
+    cfg.berkshelf.enabled = true
 
-    cfg.vm.provision "shell", privileged: false, path: "scripts/update-vm.sh"
+    cfg.vm.provision "chef_zero" do |chef|
+      chef.add_recipe "elk-stack::default"
+    end
   end
 end
