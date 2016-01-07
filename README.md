@@ -15,9 +15,10 @@ You can use it via the provided `Vagrantfile` as an example, simply run `vagrant
  * Kibana can be reached under http://192.168.33.15/
  * Logstash is listening for remote syslog messages on tcp/udp 10514
 
-There is also an exemplary client VM that you can bring up via `vagrant up log-client`:
+The local0 log facility is configured to forward all syslog messages to logstash, e.g.:
 
- * send a syslog message via `logger -p local0.info "here goes my message!"`
+ * you can log something via local0 in the VM: `vagrant ssh elk-stack -c "logger -p local0.info 'here goes my message!'"`
+ * ...and you should see it arrive in Kibana: http://192.168.33.15/
 
 ## Development
 
