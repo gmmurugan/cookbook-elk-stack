@@ -29,6 +29,7 @@ include_recipe 'kibana_lwrp::install'
 
 # declared here so we can notify it
 service 'procps'
+service 'rsyslog'
 
 # disable ipv6
 file '/etc/sysctl.d/60-disable-ipv6.conf' do
@@ -42,6 +43,17 @@ file '/etc/sysctl.d/60-disable-ipv6.conf' do
     net.ipv6.conf.lo.disable_ipv6 = 1
     EOF
   notifies :restart, 'service[procps]', :immediately
+end
+
+file '/etc/rsyslog.d/60-fwd-remote.conf' do
+  owner 'root'
+  group 'root'
+  mode '0644'
+  action :create
+  content <<-EOF
+    local0.* @@127.0.0.1:10514
+    EOF
+  notifies :restart, 'service[rsyslog]', :immediately
 end
 
 include_recipe 'simple-logstash::default'
