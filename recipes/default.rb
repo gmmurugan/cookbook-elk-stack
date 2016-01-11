@@ -67,3 +67,14 @@ group 'adm' do
 end
 logstash_input 'syslog'
 logstash_output 'logstash'
+
+# initialize logstash / kibana with an initial log message
+file '/var/run/elk-stack.firstrun' do
+  notifies :restart, 'logstash_service[logstash]', :immediately
+  notifies :restart, 'runit_service[kibana]', :immediately
+  notifies :run, 'execute[first-log]', :delayed
+end
+execute 'first-log' do
+  command 'sleep 5 && logger -p local0.info "very first log message to kick things off"'
+  action :nothing
+end
