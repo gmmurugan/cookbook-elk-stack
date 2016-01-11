@@ -51,4 +51,24 @@ Vagrant.configure(2) do |config|
       chef.add_recipe "elk-stack::default"
     end
   end
+
+
+
+  #
+  # some logging client VM
+  #
+  config.vm.define "log-client" do |ccu|
+    ccu.vm.box = "bento/ubuntu-14.04"
+    ccu.vm.network :private_network, ip: "192.168.33.14"
+    ccu.vm.hostname = "log-client.local"
+    ccu.berkshelf.enabled = false
+    ccu.vm.provision "shell", inline: <<-EOH
+      cat << CONF > /etc/rsyslog.d/60-fwd-remote.conf
+local0.* @@192.168.33.15:10514
+CONF
+      sudo service rsyslog restart
+      logger -p local0.info "first remote syslog entry!"
+    EOH
+  end
+
 end
