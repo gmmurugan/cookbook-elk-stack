@@ -8,11 +8,18 @@ The data feed can come from a logstash instance or by implementing data push plu
 
 ## Usage
 
-You can use it via the provided `Vagrantfile` by simply running `vagrant up`:
+You can use it via the provided `Vagrantfile` as an example, simply run `vagrant up elk-stack`:
 
- * Elasticsearch is accessible via port forwarding through http://127.0.0.1:9200/
- * Also the elasticsearch-head plugin is installed, which you can find under http://127.0.0.1:9200/_plugin/head
- * Kibana can be reached under http://127.0.0.1:8080
+ * Elasticsearch is accessible via http://192.168.33.15:9200/
+ * Also the elasticsearch-head plugin is installed, which you can find under http://192.168.33.15:9200/_plugin/head
+ * Kibana can be reached under http://192.168.33.15/
+ * Logstash is listening for remote syslog messages on tcp/udp 10514
+
+The local0 log facility (for both the elk-stack and the log-client VM) is configured to forward all syslog messages via tcp, e.g.:
+
+ * log in using `vagrant ssh elk-stack` (or, if you want to test it from a remote VM use `vagrant ssh log-client`)
+ * now you can log something via local0 in the VM: `logger -p local0.info 'here goes my message!'`
+ * ...and you should see it arrive in Kibana: http://192.168.33.15/
 
 ## Development
 
