@@ -13,14 +13,14 @@ driver:
 
 provisioner:
   name: chef_zero
-  require_chef_omnibus: 12.4.1
+  require_chef_omnibus: 12.19.36
   client_rb:
     add_formatter: doc
 
 platforms:
-- name: ubuntu-14.04
+- name: ubuntu-16.04
   driver_config:
-    box: <%= box_for_provider('ubuntu-14.04') %>
+    box: <%= box_for_provider('ubuntu-16.04') %>
     network:
       - ["forwarded_port", {guest: 9200, host: 19200}]
       - ["forwarded_port", {guest: 80, host: 18080}]

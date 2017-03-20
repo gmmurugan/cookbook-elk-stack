@@ -15,11 +15,11 @@ Vagrant.configure(2) do |config|
   #
   config.vm.define "elk-stack" do |cfg|
 
-    cfg.vm.box = "bento/ubuntu-14.04"
+    cfg.vm.box = "bento/ubuntu-16.04"
     cfg.vm.hostname="elk-stack"
 
     # private network
-    cfg.vm.network :private_network, ip: "192.168.33.15"
+    cfg.vm.network :private_network, ip: "192.168.99.15"
 
     # Port forward additional ports
     cfg.vm.network "forwarded_port", guest: 9200, host: 9200, id: "elastic", auto_correct: true
@@ -44,7 +44,7 @@ Vagrant.configure(2) do |config|
       v.vmx["scsi0.virtualDev"] = "lsilogic"
     end
 
-    cfg.omnibus.chef_version = "12.4.1"
+    cfg.omnibus.chef_version = "12.19.36"
     cfg.berkshelf.enabled = true
 
     cfg.vm.provision "chef_solo" do |chef|
@@ -58,13 +58,13 @@ Vagrant.configure(2) do |config|
   # some logging client VM
   #
   config.vm.define "log-client" do |ccu|
-    ccu.vm.box = "bento/ubuntu-14.04"
-    ccu.vm.network :private_network, ip: "192.168.33.14"
+    ccu.vm.box = "bento/ubuntu-16.04"
+    ccu.vm.network :private_network, ip: "192.168.99.14"
     ccu.vm.hostname = "log-client.local"
     ccu.berkshelf.enabled = false
     ccu.vm.provision "shell", inline: <<-EOH
       cat << CONF > /etc/rsyslog.d/60-fwd-remote.conf
-local0.* @@192.168.33.15:10514
+local0.* @@192.168.99.15:10514
 CONF
       sudo service rsyslog restart
       logger -p local0.info "first remote syslog entry!"
